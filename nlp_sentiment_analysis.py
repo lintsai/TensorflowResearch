@@ -56,10 +56,14 @@ def predict_sentiment(text):
     print(f"Prediction score: {prediction:.3f}")
     return "Positive" if prediction > 0.5 else "Negative"
 
-# 測試模型
-sample_review = "This movie was fantastic! I really enjoyed it and would recommend it to anyone."
-print(f"Sentiment: {predict_sentiment(sample_review)}")
+# 正向測試
+positive_review = "This movie was fantastic! I really enjoyed it and would recommend it to anyone."
+print(f"Sentiment: {predict_sentiment(positive_review)}")
 
-# 額外的測試
+# 負向測試
 negative_review = "This movie was terrible. I hated every minute of it."
 print(f"Sentiment for negative review: {predict_sentiment(negative_review)}")
+
+# 額外的測試
+extra_review = "I enjoyed the movie but it might too terrible and bloody to you if you don't like thriller film."
+print(f"Sentiment for Extra: {predict_sentiment(extra_review)}")
