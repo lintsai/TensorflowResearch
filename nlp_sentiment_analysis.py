@@ -6,15 +6,15 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-# 1. 加載數據
+# 加載數據
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(num_words=20000)
 
-# 2. 數據預處理
+# 數據預處理
 max_len = 200
 x_train = pad_sequences(x_train, maxlen=max_len)
 x_test = pad_sequences(x_test, maxlen=max_len)
 
-# 3. 構建改進的模型
+# 構建模型
 model = tf.keras.Sequential([
     tf.keras.layers.Embedding(20000, 32, input_length=max_len),
     tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, return_sequences=True)),
@@ -26,14 +26,14 @@ model = tf.keras.Sequential([
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-# 4. 訓練模型
+# 訓練模型
 history = model.fit(x_train, y_train, epochs=20, batch_size=128, validation_split=0.2, verbose=1)
 
-# 5. 評估模型
+# 評估模型
 test_loss, test_accuracy = model.evaluate(x_test, y_test, verbose=0)
 print(f"Test accuracy: {test_accuracy:.3f}")
 
-# 6. 使用模型進行預測
+# 使用模型進行預測
 word_index = tf.keras.datasets.imdb.get_word_index()
 reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])
 
