@@ -31,7 +31,7 @@ datagen = ImageDataGenerator(
 )
 datagen.fit(train_images)
 
-# 創建修正的 CNN 模型
+# 創建 CNN 模型
 model = models.Sequential([
     layers.Conv2D(32, (3, 3), activation='relu', padding='same', input_shape=(32, 32, 3)),
     layers.BatchNormalization(),
