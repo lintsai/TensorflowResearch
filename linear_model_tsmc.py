@@ -80,18 +80,18 @@ for label, future_days in future_periods.items():
 
     # 標記最高和最低點
     plt.grid(True)
-    min_price_idx = np.argmin(tsmc_data['Close'])
-    max_price_idx = np.argmax(tsmc_data['Close'])
-    plt.text(tsmc_data.index[min_price_idx], tsmc_data['Close'][min_price_idx], f"{tsmc_data['Close'][min_price_idx]:.2f}", fontsize=12, color='black')
-    plt.text(tsmc_data.index[max_price_idx], tsmc_data['Close'][max_price_idx], f"{tsmc_data['Close'][max_price_idx]:.2f}", fontsize=12, color='black')
+    min_price_idx = np.argmin(tsmc_data['Close'].values)
+    max_price_idx = np.argmax(tsmc_data['Close'].values)
+    plt.text(tsmc_data.index[min_price_idx], tsmc_data['Close'].iloc[min_price_idx].item(), f"{tsmc_data['Close'].iloc[min_price_idx].item():.2f}", fontsize=12, color='black')
+    plt.text(tsmc_data.index[max_price_idx], tsmc_data['Close'].iloc[max_price_idx].item(), f"{tsmc_data['Close'].iloc[max_price_idx].item():.2f}", fontsize=12, color='black')
 
     min_future_price_idx = np.argmin(future_y_pred_rescaled)
     max_future_price_idx = np.argmax(future_y_pred_rescaled)
-    plt.text(future_dates[min_future_price_idx], float(future_y_pred_rescaled[min_future_price_idx]), f"{float(future_y_pred_rescaled[min_future_price_idx]):.2f}", fontsize=12, color='black')
-    plt.text(future_dates[max_future_price_idx], float(future_y_pred_rescaled[max_future_price_idx]), f"{float(future_y_pred_rescaled[max_future_price_idx]):.2f}", fontsize=12, color='black')
+    plt.text(future_dates[min_future_price_idx], future_y_pred_rescaled[min_future_price_idx].item(), f"{future_y_pred_rescaled[min_future_price_idx].item():.2f}", fontsize=12, color='black')
+    plt.text(future_dates[max_future_price_idx], future_y_pred_rescaled[max_future_price_idx].item(), f"{future_y_pred_rescaled[max_future_price_idx].item():.2f}", fontsize=12, color='black')
 
     # 標記最後的價格和日期
-    last_price = tsmc_data['Close'].iloc[-1]
+    last_price = tsmc_data['Close'].iloc[-1].item()
     last_date = tsmc_data.index[-1]
     plt.text(last_date, last_price, f"{last_date.strftime('%Y-%m-%d')}: {last_price:.2f}", fontsize=12, color='black', ha='left', va='top')
 

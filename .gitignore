@@ -3,3 +3,5 @@ nlp_sentiment_analysis_chinese/
 cifar_10_classifier/
 linear_model_tsmc/
 mlp_mnist_stock/
+
+.vscode
